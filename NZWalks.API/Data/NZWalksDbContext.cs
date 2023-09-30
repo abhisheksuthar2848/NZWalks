@@ -12,6 +12,8 @@ namespace NZWalks.API.Data
         public DbSet<Region> Regions { get; set; }
         public DbSet<Walk> Walks { get; set; }
 
+        public DbSet<Image> images { get; set; }
+
         // for seed data in DB 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {

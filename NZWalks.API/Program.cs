@@ -15,6 +15,7 @@ var builder = WebApplication.CreateBuilder(args);
 // Add services to the container.
 
 builder.Services.AddControllers();
+builder.Services.AddHttpContextAccessor();
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
 //builder.Services.AddSwaggerGen();//for test with postmen below for without 
@@ -61,6 +62,7 @@ option.UseSqlServer(builder.Configuration.GetConnectionString("NZWalksAuthConnec
 builder.Services.AddScoped<IRegionRepository, RegionRepository>();
 builder.Services.AddScoped<IWalksRepository, WalksRepository>();
 builder.Services.AddScoped<ITokenRepository, TokenRepository>();// for generate token
+builder.Services.AddScoped<IImageRepository, LocalImageRepository>();
 
 // Add auto mapper
 builder.Services.AddAutoMapper(typeof(AutoMapperProfiles));

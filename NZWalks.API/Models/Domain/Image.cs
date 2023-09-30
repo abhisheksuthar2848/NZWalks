@@ -9,7 +9,10 @@ namespace NZWalks.API.Models.Domain
         [NotMapped]
         public IFormFile File { get; set; }
         public string FileName { get; set; }
-        public int FileExtenction { get; set; }
-        public int FileDescription { get; set; }
+        public string FileExtenction { get; set; }
+        public string? FileDescription { get; set; }
+        public long FileSizeInBytes { get; set; }
+        public string FilePath { get; set; }
+
     }
 }
