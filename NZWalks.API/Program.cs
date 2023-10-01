@@ -8,6 +8,7 @@ using NZWalks.API.Data;
 using NZWalks.API.Mappings;
 using NZWalks.API.Repositories;
 using NZWalks.API.Repositories.Interface;
+using Serilog;
 using System.Diagnostics.SymbolStore;
 using System.Text;
 
@@ -19,6 +20,8 @@ builder.Services.AddControllers();
 builder.Services.AddHttpContextAccessor();
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
+
+
 //builder.Services.AddSwaggerGen();//for test with postmen below for without 
 builder.Services.AddSwaggerGen(options =>
 {
@@ -50,6 +53,16 @@ builder.Services.AddSwaggerGen(options =>
     });
 });
 
+// loggerConfiguration
+
+var logger = new LoggerConfiguration()
+    .WriteTo.Console()
+    .WriteTo.File("Log/NZWalks_Log.txt",rollingInterval: RollingInterval.Day)// for store in file optional
+    .MinimumLevel.Information()
+    .CreateLogger();
+
+builder.Logging.ClearProviders();
+builder.Logging.AddSerilog(logger);
 
 // Database configuration
 builder.Services.AddDbContext<NZWalksDbContext>(option =>
