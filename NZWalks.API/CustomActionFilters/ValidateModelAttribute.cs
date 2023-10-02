@@ -8,7 +8,7 @@ namespace NZWalks.API.CustomActionFilters
     {
         public override void OnActionExecuting(ActionExecutingContext context)
         {
-            if (context.ModelState.IsValid)
+            if (context.ModelState.IsValid == false)
             {
                 context.Result = new BadRequestResult();
             }
